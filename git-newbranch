@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BRANCH=$1
+if [ -z "$BRANCH" ]; then
+  exit
+fi
+
+MAINLINE=$(git mainline) || exit 1
+
+git fetch origin "$MAINLINE" && git checkout -b $BRANCH origin/"$MAINLINE"

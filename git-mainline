@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for BRANCH in main develop master production; do
+  git show-ref --verify --quiet refs/heads/"$BRANCH" 2>/dev/null
+  if [ $? -eq 0 ]; then
+    echo -n $BRANCH;
+    exit 0;
+  fi
+done;
+
+echo "Couldn't identify main branch" >&2
+exit 1;

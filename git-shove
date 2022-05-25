@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ -z "$BRANCH" ]; then
+  exit
+fi
+
+git fetch origin $BRANCH
+git push "$@" origin $BRANCH

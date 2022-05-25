@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NEW="$1"
+OLD=$(git rev-parse --abbrev-ref HEAD)
+
+git branch -m "$NEW"
+git push origin --delete "$OLD"
+git push origin -u "$NEW"

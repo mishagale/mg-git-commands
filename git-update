@@ -1,0 +1,7 @@
+#!/bin/sh
+
+MAINLINE=$(git mainline) || exit 1
+
+git yank
+git fetch origin "$MAINLINE"
+git merge origin/"$MAINLINE"

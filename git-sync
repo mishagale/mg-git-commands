@@ -1,0 +1,17 @@
+#!/bin/bash
+
+REMOTE_HOST=$1
+
+TEMPF=$(mktemp --suffix=.patch)
+
+ssh $REMOTE_HOST "cd $(pwd)/.. && git diff" >$TEMPF 2>&1
+
+if [ $? -eq 0 ]; then
+  git apply $TEMPF
+  git status
+else
+  echo --- Error on remote host ---
+  cat $TEMPF
+fi
+
+rm $TEMPF

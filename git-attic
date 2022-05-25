@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+git status >/dev/null
+
+pushd $(git rev-parse --show-toplevel) >/dev/null
+
+mkdir -p .attic/
+git ls-files --others --exclude-standard --exclude .attic | xargs -I FILES smv -vi FILES .attic/
+
+popd >/dev/null

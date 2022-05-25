@@ -1,0 +1,5 @@
+#!/bin/bash
+
+MAINLINE=$(git mainline) || exit 1
+git diff --name-only HEAD $(git merge-base HEAD origin/"$MAINLINE")
+
